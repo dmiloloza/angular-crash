@@ -22,6 +22,10 @@
     ]
   },
   "angularCompilerOptions": {
+    /*
+    Property 'color' has no initializer and is not definitely assigned in the constructor. Add this:
+        "strictPropertyInitialization": true, or add ! after "color" => @Input() color!: string;
+    */
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
