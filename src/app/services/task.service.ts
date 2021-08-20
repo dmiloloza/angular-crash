@@ -1,38 +1,33 @@
 import {Injectable} from '@angular/core';
 import {Task} from '../Task';
+import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
 import {Observable} from 'rxjs';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json'
-  })
-};
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
-  private apiUrl = `http://localhost:5000/tasks`;
+  tasksCollection?: AngularFirestoreCollection<Task>;
+  snap: Observable<any>;
 
-  constructor(private http: HttpClient) {
+  constructor(private afs: AngularFirestore) {
+    this.snap = this.afs.collection('tasks').valueChanges();
   }
 
-  getTasks(): Observable<Task[]> {
-    return this.http.get<Task[]>(this.apiUrl);
+  getTasks() {
+    return this.snap;
   }
 
-  deleteTask(task: Task): Observable<Task> {
-    const url = `${this.apiUrl}/${task.id}`;
-    return this.http.delete<Task>(url);
+  deleteTask(task: Task): void {
+
   }
 
-  updateTaskReminder(task: Task): Observable<Task> {
-    const url = `${this.apiUrl}/${task.id}`;
-    return this.http.put<Task>(url, task, httpOptions);
+  updateTaskReminder(task: Task): void {
+
   }
 
-  addTask(task: Task): Observable<Task> {
-    return this.http.post<Task>(this.apiUrl, task, httpOptions);
+  addTask(task: Task) {
+    // this.afs.collection('tasks').doc().set(task);
   }
 }
