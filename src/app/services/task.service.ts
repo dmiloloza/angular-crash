@@ -9,25 +9,27 @@ import {Observable} from 'rxjs';
 })
 export class TaskService {
   tasksCollection?: AngularFirestoreCollection<Task>;
-  snap: Observable<any>;
+  snap!: Observable<Task[]>;
 
-  constructor(private afs: AngularFirestore) {
-    this.snap = this.afs.collection('tasks').valueChanges();
+  constructor(
+    private afs: AngularFirestore
+  ) {
+
   }
 
-  getTasks() {
-    return this.snap;
+  getTasks(): void {
+
   }
 
   deleteTask(task: Task): void {
-
+   
   }
 
   updateTaskReminder(task: Task): void {
 
   }
 
-  addTask(task: Task) {
-    // this.afs.collection('tasks').doc().set(task);
+  addTask(task: Task): void {
+    this.afs.collection('tasks').add(task);
   }
 }

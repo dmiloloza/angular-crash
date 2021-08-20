@@ -15,23 +15,19 @@ export class TasksComponent implements OnInit {
   ) {
   }
 
-  ngOnInit(): void {
-    //snap - document snapshot from task.service.ts
-    this.taskService.getTasks().subscribe(snap => this.tasks = snap);
+  ngOnInit() {
+
   }
 
   deleteTask(task: Task) {
-    //   this.taskService
-    //     .deleteTask(task)
-    //     .subscribe(() => (this.tasks = this.tasks.filter(t => t.id !== task.id)));
+
   }
 
   toggleReminder(task: Task) {
-    //   task.reminder = !task.reminder;
-    //   this.taskService.updateTaskReminder(task).subscribe();
+
   }
 
   addTask(task: Task): void {
-    // this.taskService.addTask(task);
+    this.taskService.addTask(task);
   }
 }
