@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "healthy-habits-mm": {
+      "hosting": {
+        "angular-crash": [
+          "healthy-habits-mm"
+        ]
+      }
+    }
+  }
+}
