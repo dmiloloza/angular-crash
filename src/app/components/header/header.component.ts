@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {UiService} from '../../services/ui.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +14,8 @@ export class HeaderComponent implements OnInit {
   subscription!: Subscription;
 
   constructor(
-    private uiService: UiService
+    private uiService: UiService,
+    private router: Router
   ) {
     this.subscription = this.uiService
       .onToggle()
@@ -25,5 +27,11 @@ export class HeaderComponent implements OnInit {
 
   toggleAddTask() {
     this.uiService.toggleAddTask();
+  }
+
+  hasRoute(route: string) {
+    //this will be true on idex page '/'
+    //app-button component will only on index page
+    return this.router.url === route;
   }
 }
