@@ -10,28 +10,23 @@ import {TaskService} from '../../services/task.service';
 export class TasksComponent implements OnInit {
   tasks: Task[] = [];
 
-  constructor(
-    private taskService: TaskService
-  ) {
+  constructor(private taskService: TaskService) {
   }
 
-  ngOnInit(): void {
-    //snap - document snapshot from task.service.ts
-    this.taskService.getTasks().subscribe(snap => this.tasks = snap);
+  ngOnInit() {
+    this.taskService.getTasks().subscribe(data => this.tasks = data);
   }
 
   deleteTask(task: Task) {
-    //   this.taskService
-    //     .deleteTask(task)
-    //     .subscribe(() => (this.tasks = this.tasks.filter(t => t.id !== task.id)));
+    this.taskService.deleteTask(task);
   }
 
   toggleReminder(task: Task) {
-    //   task.reminder = !task.reminder;
-    //   this.taskService.updateTaskReminder(task).subscribe();
+    task.reminder = !task.reminder;
+    this.taskService.updateTaskReminder(task);
   }
 
   addTask(task: Task): void {
-    // this.taskService.addTask(task);
+    this.taskService.addTask(task);
   }
 }
