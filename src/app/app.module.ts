@@ -5,7 +5,7 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {RouterModule, Routes} from '@angular/router';
-import {environment} from '../environments/environment';
+import {environment} from '../environments/environment.prod';
 import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
