@@ -1,35 +1,29 @@
 import {Injectable} from '@angular/core';
 import {Task} from '../Task';
-import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
-import {Observable} from 'rxjs';
+import {AngularFirestore} from '@angular/fire/firestore';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
-  tasksCollection?: AngularFirestoreCollection<Task>;
-  snap!: Observable<Task[]>;
 
-  constructor(
-    private afs: AngularFirestore
-  ) {
-
+  constructor(private afs: AngularFirestore) {
   }
 
-  getTasks(): void {
-
+  getTasks() {
+    return this.afs.collection<Task>('tasks').valueChanges({idField: 'id'});
   }
 
-  deleteTask(task: Task): void {
-   
+  deleteTask(task: Task) {
+    return this.afs.collection('tasks').doc(task.id).delete();
   }
 
-  updateTaskReminder(task: Task): void {
-
+  updateTaskReminder(task: Task) {
+    this.afs.collection('tasks').doc(task.id).update({reminder: task.reminder});
   }
 
-  addTask(task: Task): void {
+  addTask(task: Task) {
     this.afs.collection('tasks').add(task);
   }
 }
