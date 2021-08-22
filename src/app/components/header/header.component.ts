@@ -23,6 +23,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.showAddTask = false;
   }
 
   toggleAddTask() {
@@ -30,8 +31,8 @@ export class HeaderComponent implements OnInit {
   }
 
   hasRoute(route: string) {
-    //this will be true on idex page '/'
-    //app-button component will only on index page
+    //this will be true on index page '/'
+    //app-button component will show only on index page
     return this.router.url === route;
   }
 }
