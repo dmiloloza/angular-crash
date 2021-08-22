@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {UiService} from '../../services/ui.service';
 
 @Component({
   selector: 'app-about',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AboutComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private uiService: UiService
+  ) {
+  }
 
   ngOnInit(): void {
+    this.uiService.toggleAddTask();
   }
 
 }

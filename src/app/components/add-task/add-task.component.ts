@@ -29,8 +29,8 @@ export class AddTaskComponent implements OnInit {
   }
 
   onSubmit() {
-    if (!this.text) {
-      alert('Please add a task!');
+    if (!this.text || !this.day) {
+      alert('Please add Teams and Result!');
       return;
     }
 
